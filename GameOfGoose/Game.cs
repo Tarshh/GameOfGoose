@@ -28,52 +28,22 @@ namespace GameOfGoose
                     logger.Log($"Piece {piece.PieceNumber}, Press < Enter > to throw dice");
                     logger.Read();
 
-                    var throwDice = dice.ThrowDice();
-                    var throwDice2 = dice.ThrowDice();
-                    var throwDiceTotal = throwDice + throwDice2;
-                    logger.Log($"You have thrown {throwDice} + {throwDice2} for total {throwDiceTotal}");
+                    var totalThrow = dice.ThrowTotal(piece);
 
-                    if (piece.Position == 0)
+                    var newPosition = piece.Move(piece, totalThrow);
+
+                    var checkPosition = piece.CheckPosition(newPosition, piece);
+
+                    logger.Log(checkPosition);
+
+                    //Dit nog checken, kan niet zien of de string 63 bevat. won wordt niet op false gezet.
+                    if (checkPosition.Contains("63"))
                     {
-                        if (throwDice == 5 && throwDice2 == 4 || throwDice == 4 && throwDice2 == 5)
-                        {
-                            piece.Position = 26;
-                            logger.Log($"Piece {piece.PieceNumber} has landed on space {piece.Position} \n");
-                            continue;
-                        }
-
-                        if (throwDice == 6 && throwDice2 == 3 || throwDice == 3 && throwDice2 == 6)
-                        {
-                            piece.Position = 53;
-                            logger.Log($"Piece {piece.PieceNumber} has landed on space {piece.Position} \n");
-                            continue;
-                        }
-                    }
-
-                    var newPosition = piece.move(piece, throwDice, throwDice2);
-                    piece.Position = newPosition;
-                    
-
-                    if (newPosition > win)
-                    {
-                        var stepsBack = newPosition - win;
-                        piece.Position = win - stepsBack;
-                        logger.Log($"Piece {piece.PieceNumber} has landed on space {piece.Position} \n");
-                        continue;
-                    }
-
-                    if (piece.Position == win)
-                    {
-                        logger.Log($"Piece {piece.PieceNumber} has won the game");
                         won = false;
-                        continue;
                     }
 
-                    logger.Log($"Piece {piece.PieceNumber} has landed on space {newPosition} \n");
                 }
             } while (won);
-
-            Console.ReadLine();
 
         }
     }
