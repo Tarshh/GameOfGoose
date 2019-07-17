@@ -34,13 +34,15 @@ namespace GameOfGoose
 
             if (newPosition == _win)
             {
-                 message = $"Piece {piece.PieceNumber} has won the game";
+                 message = $"{newPosition}! Piece {piece.PieceNumber} has won the game";
                 return message;
             }
 
             piece.Position = newPosition;
-           message = ($"Piece {piece.PieceNumber} has landed on space {newPosition} \n");
+            message = ($"Piece {piece.PieceNumber} has landed on space {newPosition} \n");
            return message;
         }
+
+        //CheckSpace
     }
 }

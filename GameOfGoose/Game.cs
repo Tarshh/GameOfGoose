@@ -6,7 +6,7 @@ namespace GameOfGoose
     public class Game
     {
         //public List<Piece> Pieces { get; set; }
-        //public List<Space> Spaces { get; set; }
+        public List<Space> Spaces { get; set; }
         //public Dice Dice { get; set; }
 
 
@@ -14,6 +14,7 @@ namespace GameOfGoose
         {
             Dice dice = new Dice();
             Logger logger = new Logger();
+            Space space = new Space();
             int win = 63;
             int turn = 0;
             bool won = true;
@@ -29,15 +30,24 @@ namespace GameOfGoose
                     logger.Read();
 
                     var totalThrow = dice.ThrowTotal(piece);
+                    //probleem --> Als er een special combo wordt gegooid logt hij de plaats, maar daarna gaat hij ook naar volgende functie.
+
+                    //You have thrown 4 + 5 for total 9
+                    //Piece 3 has landed on space 26
+
+                    //Piece 3 has landed on space 35
 
                     var newPosition = piece.Move(piece, totalThrow);
 
-                    var checkPosition = piece.CheckPosition(newPosition, piece);
+                    //Hier space checken
+                    var checkedForObstacle = space.CheckSpace(piece, newPosition, totalThrow);
+                    ////
+                    
+                    var checkPosition = piece.CheckPosition(checkedForObstacle, piece);
 
                     logger.Log(checkPosition);
 
-                    //Dit nog checken, kan niet zien of de string 63 bevat. won wordt niet op false gezet.
-                    if (checkPosition.Contains("63"))
+                    if (checkedForObstacle == 63)
                     {
                         won = false;
                     }

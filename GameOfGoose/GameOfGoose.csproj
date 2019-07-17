@@ -43,9 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BridgeObstacle.cs" />
+    <Compile Include="MazeObstacle.cs" />
+    <Compile Include="DeathObstacle.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GooseObstacle.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="IObstacle.cs" />
+    <Compile Include="Obstacle.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
