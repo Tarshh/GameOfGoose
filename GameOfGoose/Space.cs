@@ -34,6 +34,8 @@ namespace GameOfGoose
 
                 while (obstacles.Contains(newPosition))
                 {
+
+                    //var oldPosition = newPosition;
                     obstacle.CheckObstacle(piece, newPosition, totalThrow, turn);
                     return newPosition;
                 }

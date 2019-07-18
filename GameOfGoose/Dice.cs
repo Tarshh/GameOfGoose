@@ -30,32 +30,28 @@ namespace GameOfGoose
 
             if (throwDiceTotal == 9 && piece.Position == 0)
             {
-                logger.Log(CheckThrow(throwDice, throwDice2, piece));
+                var specialThrow = CheckThrow(throwDice, throwDice2, piece, throwDiceTotal);
+                return specialThrow;
             }
 
             return throwDiceTotal;
         }
 
-        public string CheckThrow(int throw1, int throw2, Piece piece)
+        public int CheckThrow(int throw1, int throw2, Piece piece, int throwDiceTotal)
         {
-            if (piece.Position == 0)
+            if (throw1 == 5 && throw2 == 4 || throw1 == 4 && throw2 == 5)
             {
-                if (throw1 == 5 && throw2 == 4 || throw1 == 4 && throw2 == 5)
-                {
-                    piece.Position = 26;
-                    string message = $"Piece {piece.PieceNumber} has landed on space {piece.Position} \n";
-                    return message;
-                }
-
-                if (throw1 == 6 && throw2 == 3 || throw1 == 3 && throw2 == 6)
-                {
-                    piece.Position = 53;
-                    string message = $"Piece {piece.PieceNumber} has landed on space {piece.Position} \n";
-                    return message;
-                }
+                var specialThrow = 26;
+                return specialThrow;
             }
 
-            return string.Empty;
+            if (throw1 == 6 && throw2 == 3 || throw1 == 3 && throw2 == 6)
+            {
+                var specialThrow = 53;
+                return specialThrow;
+            }
+
+            return throwDiceTotal;
         }
     }
 }

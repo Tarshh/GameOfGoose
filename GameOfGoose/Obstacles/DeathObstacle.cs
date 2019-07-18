@@ -2,11 +2,11 @@
 {
     public class DeathObstacle : IObstacle
     {
-        private Logger logger = new Logger();
+        private Logger _logger = new Logger();
 
         public int Meaning(int currentPosition, int thrownNumbers)
         {
-            logger.Log("Death!");
+            _logger.Log("Death!");
             return 0; 
         }
     }

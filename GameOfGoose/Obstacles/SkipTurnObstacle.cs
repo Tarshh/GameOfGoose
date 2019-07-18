@@ -4,7 +4,6 @@
     {
         public void SkipTurn(Piece piece, int turns)
         {
-
             piece.AmountSkipTurn = turns;
         }
     }
