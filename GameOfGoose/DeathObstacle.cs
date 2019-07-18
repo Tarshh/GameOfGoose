@@ -7,7 +7,7 @@
         public int Meaning(int currentPosition, int thrownNumbers)
         {
             logger.Log("Death!");
-            return 0;
+            return 0; 
         }
     }
 }

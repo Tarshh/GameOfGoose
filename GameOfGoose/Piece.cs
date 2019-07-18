@@ -6,7 +6,9 @@ namespace GameOfGoose
     {
         public int PieceNumber { get; set; }
         public int Position { get; set; }
+        public int AmountSkipTurn { get; set; }
         private int _win = 63;
+     
         private readonly Logger logger;
         public Piece(int pieceNumber, int position)
         {
@@ -43,6 +45,6 @@ namespace GameOfGoose
            return message;
         }
 
-        //CheckSpace
+
     }
 }

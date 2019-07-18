@@ -24,19 +24,28 @@ namespace GameOfGoose
         //    return obstacles;
         //}
 
-        public int CheckSpace(Piece piece, int currentPosition, int totalThrow)
+        public int CheckSpace(Piece piece, int currentPosition, int totalThrow, int turn)
         {
+            var newPosition = new int();
             if (obstacles.Contains(currentPosition))
             {
-                var newPosition = obstacle.CheckObstacle(piece, currentPosition, totalThrow);
-                return newPosition;
+                newPosition = obstacle.CheckObstacle(piece, currentPosition, totalThrow, turn);
+            //obstacles.Contains(newPosition) ? obstacle.CheckObstacle(piece, newPosition) : checkAgain = false;
+
+                while (obstacles.Contains(newPosition))
+                {
+                    obstacle.CheckObstacle(piece, newPosition, totalThrow, turn);
+                    return newPosition;
+                }
+
+                //if newPosition contains obstaclenumbres --> opnieuw checkObstacle 
             }
             else
             {
                 return currentPosition;
             }
 
-
+            return newPosition;
         }
 
 
