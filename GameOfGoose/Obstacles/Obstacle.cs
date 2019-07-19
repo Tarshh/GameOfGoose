@@ -14,7 +14,6 @@ namespace GameOfGoose
 
         public int CheckObstacle(Piece piece, int currentPosition, int totalThrow)
         {
-
             while (true)
             {
                 if (_gooseObstacles.Contains(currentPosition))
@@ -39,11 +38,12 @@ namespace GameOfGoose
                     return currentPosition;
                 }
 
-                //Inn
-                //if (currentPosition)
-                //{
-                    
-                //}
+                //well
+                if (currentPosition == 31)
+                {
+                    var newPosition = piece.Well();
+                    return newPosition;
+                }
 
                 //Maze
                 if (currentPosition == 42)
@@ -72,8 +72,6 @@ namespace GameOfGoose
                     return currentPosition;
                 }
             }
-            
-           
         }
     }
 }
