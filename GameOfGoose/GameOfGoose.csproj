@@ -56,7 +56,6 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Obstacles\Interfaces\IObstacle.cs" />
     <Compile Include="Obstacles\Obstacle.cs" />
-    <Compile Include="Obstacles\WellObstacle.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
