@@ -38,12 +38,12 @@ namespace GameOfGoose
                     return currentPosition;
                 }
 
-                //well
-                if (currentPosition == 31)
-                {
-                    var newPosition = piece.Well();
-                    return newPosition;
-                }
+                ////well
+                //if (currentPosition == 31)
+                //{
+                //    var newPosition = piece.Well();
+                //    return newPosition;
+                //}
 
                 //Maze
                 if (currentPosition == 42)
