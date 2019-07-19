@@ -4,46 +4,30 @@ namespace GameOfGoose
 {
     public class Obstacle
     {
-        private IObstacle GooseObstacle = new GooseObstacle();
-        private ISkipTurnObstacle skipTurnObstacle = new SkipTurnObstacle();
-        private IObstacle BridgeObstacle = new BridgeObstacle();
-        private IObstacle DeathObstacle = new DeathObstacle();
-        private IObstacle MazeObstacle = new MazeObstacle();
+        private IGooseObstacle _gooseObstacle = new GooseObstacle();
+        private ISkipTurnObstacle _skipTurnObstacle = new SkipTurnObstacle();
+        private IObstacle _bridgeObstacle = new BridgeObstacle();
+        private IObstacle _deathObstacle = new DeathObstacle();
+        private IObstacle _mazeObstacle = new MazeObstacle();
 
-        private readonly int[] _gooseObstacle = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
+        private readonly int[] _gooseObstacles = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
 
-        public int CheckObstacle(Piece piece, int currentPosition, int totalThrow, int turn)
+        public int CheckObstacle(Piece piece, int currentPosition, int totalThrow)
         {
+
             while (true)
             {
-                if (_gooseObstacle.Contains(currentPosition))
+                if (_gooseObstacles.Contains(currentPosition))
                 {
-                    var newPosition = GooseObstacle.Meaning(currentPosition, totalThrow);
-
+                    var newPosition = _gooseObstacle.Meaning(piece, currentPosition, totalThrow );
+                    piece.StepBack = false;
                     return newPosition;
                 }
 
                 //Bridge
                 if (currentPosition == 6)
                 {
-                    var newPosition = BridgeObstacle.Meaning(currentPosition, totalThrow);
-                    //var newPosition = 12;
-                    return newPosition;
-                }
-
-                //Death
-                if (currentPosition == 58)
-                {
-                    var newPosition = DeathObstacle.Meaning(currentPosition, totalThrow);
-                    //var newPosition = 0;
-                    return newPosition;
-                }
-
-                //Maze
-                if (currentPosition == 42)
-                {
-                    //var newPostion = 39;
-                    var newPosition = MazeObstacle.Meaning(currentPosition, totalThrow);
+                    var newPosition = _bridgeObstacle.Meaning(currentPosition, totalThrow);
                     return newPosition;
                 }
 
@@ -51,20 +35,41 @@ namespace GameOfGoose
                 if (currentPosition == 19)
                 {
                     var turns = 1;
-                    skipTurnObstacle.SkipTurn(piece, turns);
+                    _skipTurnObstacle.SkipTurn(piece, turns);
                     return currentPosition;
                 }
 
+                //Inn
+                //if (currentPosition)
+                //{
+                    
+                //}
+
+                //Maze
+                if (currentPosition == 42)
+                {
+                    var newPosition = _mazeObstacle.Meaning(currentPosition, totalThrow);
+                    return newPosition;
+                }
+
+                //Prison
                 if (currentPosition == 52)
                 {
                     var turns = 3;
-                    skipTurnObstacle.SkipTurn(piece, turns);
+                    _skipTurnObstacle.SkipTurn(piece, turns);
                     return currentPosition;
                 }
+
+                //Death
+                if (currentPosition == 58)
+                {
+                    var newPosition = _deathObstacle.Meaning(currentPosition, totalThrow);
+                    return newPosition;
+                }
+
                 else
                 {
                     return currentPosition;
-                    
                 }
             }
             

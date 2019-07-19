@@ -26,7 +26,7 @@ namespace GameOfGoose
 
             var throwDiceTotal = throwDice + throwDice2;
 
-            logger.Log($"You have thrown {throwDice} + {throwDice2} for total {throwDiceTotal}");
+            logger.Log($"{throwDice} + {throwDice2} = {throwDiceTotal}");
 
             if (throwDiceTotal == 9 && piece.Position == 0)
             {

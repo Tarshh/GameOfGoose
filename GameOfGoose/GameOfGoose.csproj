@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Obstacles\BridgeObstacle.cs" />
+    <Compile Include="Obstacles\Interfaces\IGooseObstacle.cs" />
     <Compile Include="Obstacles\SkipTurnObstacle.cs" />
     <Compile Include="Obstacles\Interfaces\ISkipTurnObstacle.cs" />
     <Compile Include="Obstacles\MazeObstacle.cs" />

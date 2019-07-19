@@ -9,7 +9,6 @@ namespace GameOfGoose
         {
             Dice dice = new Dice();
             Logger logger = new Logger();
-            Space space = new Space();
             int turn = 0;
             bool won = true;
 
@@ -20,30 +19,26 @@ namespace GameOfGoose
 
                 foreach (var piece in pieces)
                 {
-                    if (piece.AmountSkipTurn > 0)
+                    var checkAmountSkip = piece.CheckSkip(turn);
+
+                    if (checkAmountSkip == true)
                     {
-                        piece.AmountSkipTurn--;
-                        logger.Log($"Piece {piece.PieceNumber} is skipping turn \n");
+                       continue;
                     }
                     else
                     {
                         logger.Log($"Piece {piece.PieceNumber}, Press < Enter > to throw dice");
+
                         logger.Read();
 
                         var totalThrow = dice.ThrowTotal(piece);
 
-                        var newPosition = piece.Move(piece, totalThrow);
+                        var newPosition = piece.Move(totalThrow);
 
-                        var checkedForObstacle = space.CheckSpace(piece, newPosition, totalThrow, turn);
+                        logger.Log(newPosition);
 
-                        var checkPosition = piece.CheckPosition(checkedForObstacle, piece);
-
-                        logger.Log(checkPosition);
-
-                        if (checkedForObstacle == 63)
-                        {
-                            won = false;
-                        }
+                        won = piece.CheckWin(piece.Position);
+//
                     }
                 }
             } while (won);

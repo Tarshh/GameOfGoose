@@ -1,4 +1,6 @@
-﻿namespace GameOfGoose
+﻿using System;
+
+namespace GameOfGoose
 {
     public class SkipTurnObstacle : ISkipTurnObstacle
     {
