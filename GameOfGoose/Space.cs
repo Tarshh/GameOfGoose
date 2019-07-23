@@ -30,6 +30,7 @@ namespace GameOfGoose
                        return newPosition;
                    }
 
+
                    if (newPosition == 52)
                    {
                        obstacle.CheckObstacle(piece, newPosition, totalThrow);

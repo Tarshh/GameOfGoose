@@ -11,7 +11,6 @@ namespace GameOfGoose
         public int AmountSkipTurn { get; set; }
         public bool StepBack { get; set; }
         public bool InWell { get; set; }
-        public List<Piece> PiecesInWell { get; set; } = new List<Piece>();
         private int _win = 63;
         private readonly Logger _logger = new Logger();
         private Space _space = new Space();
@@ -87,28 +86,6 @@ namespace GameOfGoose
             {
                 return true;
             }
-        }
-
-        public int Well()
-        {
-            if (PiecesInWell.Count == 0) 
-            {
-                InWell = true;
-                PiecesInWell.Add(this);
-                return this.Position = 31;
-            }
-            else
-            {
-                PiecesInWell.First(x => x.InWell = false);
-                PiecesInWell.Clear();
-                PiecesInWell.Add(this);
-            }
-
-            return 
-                
-                
-                
-                Position;
         }
     }
 }

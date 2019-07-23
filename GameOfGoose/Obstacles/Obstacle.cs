@@ -57,6 +57,8 @@ namespace GameOfGoose
                 {
                     var turns = 3;
                     _skipTurnObstacle.SkipTurn(piece, turns);
+
+
                     return currentPosition;
                 }
 
